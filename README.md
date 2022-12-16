@@ -6,6 +6,30 @@ $ docker pull infinispan/server:14.0.2.Final
 $ docker run -p 11222:11222 -e USER=admin -e PASS=password infinispan/server:14.0.2.Final
 ```
 
+Create cache on Infinispan Server
+```json
+{
+  "test_datagrid": {
+    "distributed-cache": {
+      "owners": "1",
+      "mode": "SYNC",
+      "statistics": true,
+      "encoding": {
+        "key": {
+          "media-type": "application/x-java-object"
+        },
+        "value": {
+          "media-type": "application/x-java-object"
+        }
+      },
+      "locking": {
+        "isolation": "REPEATABLE_READ"
+      }
+    }
+  }
+}
+```
+
 ```
 $ curl -kv -X POST http://localhost:8082/hello/v1/greeting/edwin
 *   Trying ::1:8082...
