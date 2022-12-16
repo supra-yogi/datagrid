@@ -35,7 +35,7 @@ public class HelloController {
             }
             return "Hello " + name;
         } catch (Exception ex) {
-            log.error("Got error: {}", ex.getMessage());
+            log.error(ex.getMessage(), ex);
             return "Something wrong happened";
         }
     }
