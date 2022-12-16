@@ -3,6 +3,7 @@ package com.yogi.demodatagrid.config;
 
 import org.infinispan.client.hotrod.configuration.ConfigurationBuilder;
 import org.infinispan.spring.starter.remote.InfinispanRemoteConfigurer;
+import org.infinispan.commons.marshall.JavaSerializationMarshaller;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
@@ -34,6 +35,8 @@ public class JDGConfiguration {
                 .security().authentication()
                 .username(jdgUsername)
                 .password(jdgPassword)
+                .addJavaSerialAllowList("com.yogi.demodatagrid.bean.*")
+                .marshaller(JavaSerializationMarshaller.class)
                 .build();
     }
 
