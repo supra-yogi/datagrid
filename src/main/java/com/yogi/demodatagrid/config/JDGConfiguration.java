@@ -19,13 +19,21 @@ public class JDGConfiguration {
     @Value(value = "${jdg.hotrod.port}")
     private int jdgHotRodPort;
 
+    @Value(value = "${jdg.username}")
+    private String jdgUsername;
+
+    @Value(value = "${jdg.password}")
+    private String jdgPassword;
+
     @Bean
     public InfinispanRemoteConfigurer infinispanRemoteConfigurer() {
         return () -> new ConfigurationBuilder()
                 .addServer()
                 .host(jdgServerLocation)
                 .port(jdgHotRodPort)
-                .protocolVersion("2.6")
+                .security().authentication()
+                .username(jdgUsername)
+                .password(jdgPassword)
                 .build();
     }
 
